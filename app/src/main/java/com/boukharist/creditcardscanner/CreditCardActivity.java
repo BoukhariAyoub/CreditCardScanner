@@ -27,7 +27,7 @@ public class CreditCardActivity extends AppCompatActivity {
 
     void populateCreditCard(CreditCard creditCard) {
 
-        creditCardView.setTextNumber(creditCard.getFormattedCardNumber());
+        creditCardView.setTextNumber(creditCard.getRedactedCardNumber());
 
         if (creditCard.getCardType() != null) {
             switch (creditCard.getCardType()) {

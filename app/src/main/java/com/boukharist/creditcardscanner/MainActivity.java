@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Toast;
 
 import io.card.payment.CardIOActivity;
 import io.card.payment.CreditCard;
@@ -40,8 +41,6 @@ public class MainActivity extends AppCompatActivity {
             if (data != null && data.hasExtra(CardIOActivity.EXTRA_SCAN_RESULT)) {
                 CreditCard scanResult = data.getParcelableExtra(CardIOActivity.EXTRA_SCAN_RESULT);
 
-                // Never log a raw card number. Avoid displaying it, but if necessary use getFormattedCardNumber()
-
                 Intent intent = new Intent(this, CreditCardActivity.class);
                 intent.putExtra("creditCard", scanResult);
                 startActivity(intent);
@@ -49,12 +48,10 @@ public class MainActivity extends AppCompatActivity {
 
             } else {
                 resultDisplayStr = "Scan was canceled.";
+                Toast.makeText(this,resultDisplayStr,Toast.LENGTH_SHORT).show();
             }
 
-//            ((TextView) findViewById(R.id.tv_result)).setText(resultDisplayStr);
 
-            // do something with resultDisplayStr, maybe display it in a textView
-            // resultTextView.setText(resultDisplayStr);
         }
         // else handle other activity results
     }
